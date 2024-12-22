@@ -1,0 +1,45 @@
+{
+  "resumeTitle": {
+    "title": "ddasdf"
+  },
+  "information": {
+    "name": "dfasdf",
+    "contact": [
+      {
+        "id": 0,
+        "name": "Email",
+        "href": "asdfasdf",
+        "isEmail": true
+      },
+      {
+        "id": 1,
+        "name": "Github",
+        "href": "sadfa"
+      },
+      {
+        "id": 2,
+        "name": "Blog",
+        "href": "sdfs"
+      }
+    ],
+    "additional_info": "asdfasdffff"
+  },
+  "workExperience": [
+    {
+      "id": 0,
+      "name": "afasd",
+      "position": "fasdf",
+      "period": [
+        "fa",
+        "dsf"
+      ],
+      "description": "asd",
+      "additional_info": "a"
+    }
+  ],
+  "project": [],
+  "activity": [],
+  "education": [],
+  "certificate": [],
+  "award": []
+}

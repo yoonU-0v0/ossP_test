@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 입력</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            width: 90%;
+            max-width: 400px;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 768px) {
+            .form-container {
+                max-width: 600px;
+                padding: 40px 50px;
+            }
+
+            .form-container h1 {
+                font-size: 32px;
+            }
+
+            .form-group label {
+                font-size: 16px;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px;
+            }
+
+            .submit-btn {
+                font-size: 18px;
+                padding: 14px;
+            }
+        }
+
+        .form-container h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group label {
+            flex: 1;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .add-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>회원 정보 입력</h1>
+        <form id="inputForm">
+            <!-- 이름 -->
+            <div class="form-group">
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+            </div>
+
+            <!-- 주소 -->
+            <div class="form-group">
+                <label for="address1">기본 주소:</label>
+                <input type="text" id="address1" name="address1" placeholder="기본 주소를 입력하세요" required>
+            </div>
+            <div class="form-group">
+                <label for="address2">상세 주소:</label>
+                <input type="text" id="address2" name="address2" placeholder="상세 주소를 입력하세요">
+            </div>
+
+            <!-- 핸드폰 번호 -->
+            <div class="form-group">
+                <label for="phone">핸드폰 번호:</label>
+                <input type="text" id="phone" name="phone" placeholder="예: 010-1234-5678" required>
+            </div>
+
+            <!-- 이메일 -->
+            <div class="form-group">
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email" placeholder="이메일 주소를 입력하세요" required>
+            </div>
+
+            <!-- 생년월일 -->
+            <div class="form-group">
+                <label for="birth">생년월일:</label>
+                <input type="date" id="birth" name="birth" required>
+            </div>
+
+            <!-- 직장 경력 -->
+            <div id="career-section">
+                <div class="form-group">
+                    <label>직장 경력:</label>
+                    <input type="text" name="career[]" placeholder="직장 경력을 입력하세요">
+                    <button type="button" class="add-button" onclick="addField('career-section', 'career[]', '직장 경력을 입력하세요')">+</button>
+                </div>
+            </div>
+
+            <!-- 프로젝트 경험 -->
+            <div id="projects-section">
+                <div class="form-group">
+                    <label>프로젝트 경험:</label>
+                    <input type="text" name="projects[]" placeholder="프로젝트 경험을 입력하세요">
+                    <button type="button" class="add-button" onclick="addField('projects-section', 'projects[]', '프로젝트 경험을 입력하세요')">+</button>
+                </div>
+            </div>
+
+            <!-- 기타 경험 -->
+            <div id="experience-section">
+                <div class="form-group">
+                    <label>기타 경험:</label>
+                    <input type="text" name="experience[]" placeholder="기타 경험을 입력하세요">
+                    <button type="button" class="add-button" onclick="addField('experience-section', 'experience[]', '기타 경험을 입력하세요')">+</button>
+                </div>
+            </div>
+
+            <!-- 대회/교육 -->
+            <div id="education-section">
+                <div class="form-group">
+                    <label>대회/교육/부트캠프:</label>
+                    <input type="text" name="education[]" placeholder="대회/교육을 입력하세요">
+                    <button type="button" class="add-button" onclick="addField('education-section', 'education[]', '대회/교육을 입력하세요')">+</button>
+                </div>
+            </div>
+
+            <!-- 자격증 -->
+            <div id="certifications-section">
+                <div class="form-group">
+                    <label>자격증:</label>
+                    <input type="text" name="certifications[]" placeholder="자격증을 입력하세요">
+                    <button type="button" class="add-button" onclick="addField('certifications-section', 'certifications[]', '자격증을 입력하세요')">+</button>
+                </div>
+            </div>
+
+            <!-- 포트폴리오 색상 -->
+            <div class="form-group">
+                <label for="portfolioColor">포트폴리오 색상:</label>
+                <input type="color" id="portfolioColor" name="portfolioColor">
+            </div>
+
+            <!-- 제출 버튼 -->
+            <button type="submit" class="submit-btn">제출</button>
+        </form>
+    </div>
+
+    <script>
+        function addField(sectionId, fieldName, placeholder) {
+            const section = document.getElementById(sectionId);
+            const formGroup = document.createElement('div');
+            formGroup.classList.add('form-group');
+
+            const label = document.createElement('label');
+            label.textContent = '';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = fieldName;
+            input.placeholder = placeholder;
+
+            const addButton = section.querySelector('.add-button');
+            formGroup.appendChild(label);
+            formGroup.appendChild(input);
+
+            formGroup.appendChild(addButton);
+            section.appendChild(formGroup);
+        }
+    </script>
+</body>
+</html>
